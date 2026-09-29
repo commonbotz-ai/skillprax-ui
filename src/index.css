@@ -1,0 +1,576 @@
+@import "tailwindcss";
+@import "./styles/animations.css";
+
+/* =====================================================================
+   MANDATORY MASTER ANIMATION STYLESHEET (PRO MAX DYNAMICS)
+   ===================================================================== */
+
+/* --- UNIVERSAL PAGE & COMPONENT ENTRANCE --- */
+@keyframes fadeInUpBlur {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.page-landing-enter {
+  animation: fadeInUpBlur 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger delays for child elements */
+.stagger-1 { animation-delay: 60ms; }
+.stagger-2 { animation-delay: 120ms; }
+.stagger-3 { animation-delay: 180ms; }
+.stagger-4 { animation-delay: 240ms; }
+
+/* --- BUTTON "PRO MAX" INTERACTIONS --- */
+.btn-pro-max {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+}
+.btn-pro-max:hover {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.4), 0 8px 20px -4px rgba(0, 0, 0, 0.1);
+}
+.btn-pro-max:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+/* Linear-style rotating border beam for CTAs */
+@keyframes borderBeamRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.border-beam-cta {
+  background: linear-gradient(90deg, #10b981, #6366f1, #f59e0b, #10b981);
+  background-size: 300% 300%;
+  animation: borderBeamRotate 4s ease infinite;
+}
+
+/* --- QUIZ OPTION CARDS (HEAVILY ANIMATED) --- */
+.quiz-option-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+}
+.quiz-option-card:hover {
+  transform: translateX(8px) scale(1.015);
+  border-color: #10b981 !important;
+  background: rgba(240, 253, 244, 0.7) !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.18) !important;
+}
+.quiz-option-card.selected {
+  transform: translateX(10px) scale(1.02);
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+  box-shadow: 0 0 0 2px #10b981, 0 8px 25px rgba(16, 185, 129, 0.25) !important;
+}
+.quiz-radio-pulse {
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.quiz-option-card.selected .quiz-radio-pulse {
+  transform: scale(1.25);
+  background-color: #10b981 !important;
+  box-shadow: 0 0 12px #10b981 !important;
+}
+
+/* --- IN-PLACE EVALUATION DIAGNOSTIC REVEAL --- */
+@keyframes popScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(15px);
+    filter: blur(6px);
+  }
+  70% {
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+.evaluation-reveal-pop {
+  animation: popScaleIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Score counter pulse ring */
+@keyframes ringPulse {
+  0% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6)); }
+  100% { transform: scale(0.95); opacity: 0.6; }
+}
+.score-radial-pulse {
+  animation: ringPulse 2.5s infinite ease-in-out;
+}
+
+/* Misconception cards slide in */
+@keyframes slideRightCard {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.misconception-card-enter {
+  animation: slideRightCard 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- LIVING NODE FLOW ENERGY BEAM --- */
+@keyframes flowingEnergy {
+  0% { stroke-dashoffset: 48; }
+  100% { stroke-dashoffset: 0; }
+}
+.energy-beam-pulse {
+  stroke-dasharray: 8 16;
+  animation: flowingEnergy 1.2s linear infinite;
+  filter: drop-shadow(0 0 6px #10b981);
+}
+
+/* --- WOBBLE-CLOUD CARD 3D HOVER --- */
+.wobble-cloud-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.wobble-cloud-card:hover {
+  transform: translateY(-5px) rotate(-0.5deg) scale(1.015);
+  box-shadow: 0 12px 30px -5px rgba(16, 185, 129, 0.15), 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+/* --- BACKGROUND CONTINUOUS DRIFT --- */
+@keyframes floatOrbSlow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(12px, -18px) rotate(4deg); }
+  66% { transform: translate(-10px, 14px) rotate(-4deg); }
+}
+.floating-orb {
+  animation: floatOrbSlow 9s ease-in-out infinite;
+}
+
+@layer base {
+  :root {
+    --primary: #0284C7;
+    --primary-light: #38BDF8;
+    --cta: #10B981;
+    --cta-hover: #059669;
+    --background: #F8FAF9;
+    --text: #1E293B;
+    --accent: #F59E0B;
+  }
+
+  body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Technical grid canvas matching screenshot */
+.bg-tech-grid {
+  background-color: #F8FAF9;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-tech-grid-dense {
+  background-color: #F8FAF9;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Linear/Vercel Rotating Conic Border Beam */
+@keyframes conicSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.conic-beam {
+  position: relative;
+  overflow: hidden;
+}
+
+.conic-beam::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0 280deg, #10B981 320deg, #38BDF8 360deg);
+  animation: conicSpin 2.8s linear infinite;
+  z-index: 0;
+}
+
+.conic-beam-amber {
+  position: relative;
+  overflow: hidden;
+}
+
+.conic-beam-amber::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0 280deg, #F59E0B 320deg, #FBBF24 360deg);
+  animation: conicSpin 2.8s linear infinite;
+  z-index: 0;
+}
+
+/* Shimmer Laser Sweep across button surface */
+@keyframes shimmerLaser {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  30%, 100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmerLaser 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Universal Button and Clickable interactions with Active Pulse */
+.btn-tactile {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.btn-tactile:hover {
+  transform: scale(1.025) translateY(-2px);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.4), 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.btn-tactile:active {
+  transform: scale(0.95) translateY(0);
+}
+
+.btn-tactile-primary {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.btn-tactile-primary:hover {
+  transform: scale(1.025) translateY(-2px);
+  box-shadow: 0 0 24px rgba(2, 132, 199, 0.45), 0 4px 12px rgba(2, 132, 199, 0.2);
+}
+
+.btn-tactile-primary:active {
+  transform: scale(0.95) translateY(0);
+}
+
+.btn-tactile-amber {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-tactile-amber:hover {
+  transform: scale(1.025) translateY(-2px);
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.4), 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.btn-tactile-amber:active {
+  transform: scale(0.95) translateY(0);
+}
+
+/* Major Active Button Breathing Pulse */
+@keyframes activePulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.35), 0 4px 14px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(16, 185, 129, 0.6), 0 6px 20px rgba(16, 185, 129, 0.35);
+  }
+}
+
+.animate-pulse-glow {
+  animation: activePulseGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes activePulseSky {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(2, 132, 199, 0.35), 0 4px 14px rgba(2, 132, 199, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(2, 132, 199, 0.6), 0 6px 20px rgba(2, 132, 199, 0.35);
+  }
+}
+
+.animate-pulse-sky {
+  animation: activePulseSky 2.4s ease-in-out infinite;
+}
+
+/* Wobble-cloud card hover dynamics with 3D perspective */
+.wobble-card {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease;
+  will-change: transform, box-shadow;
+}
+
+.wobble-card:hover {
+  transform: translateY(-4px) perspective(1000px) rotateX(1.2deg) rotateY(-1.2deg);
+  box-shadow: 0 20px 36px -8px rgba(16, 185, 129, 0.15), 0 10px 20px -4px rgba(2, 132, 199, 0.1);
+}
+
+/* Continuous ambient drifting bubbles */
+@keyframes driftSlow1 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(14px, -20px) rotate(4deg) scale(1.04);
+  }
+  66% {
+    transform: translate(-12px, 16px) rotate(-4deg) scale(0.97);
+  }
+}
+
+@keyframes driftSlow2 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-18px, -28px) rotate(-5deg) scale(1.05);
+  }
+}
+
+@keyframes driftSlow3 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  40% {
+    transform: translate(16px, 22px) rotate(5deg);
+  }
+  80% {
+    transform: translate(-14px, -14px) rotate(-3deg);
+  }
+}
+
+.animate-drift-1 {
+  animation: driftSlow1 8s ease-in-out infinite;
+}
+
+.animate-drift-2 {
+  animation: driftSlow2 10s ease-in-out infinite;
+}
+
+.animate-drift-3 {
+  animation: driftSlow3 7s ease-in-out infinite;
+}
+
+/* Enhanced Flame Streak Pulse & Flickering Embers */
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1.5deg);
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.65)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.3));
+  }
+  25% {
+    transform: scale(1.1) rotate(1.5deg);
+    filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.8)) drop-shadow(0 0 26px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    transform: scale(1.05) rotate(-2deg);
+    filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.7));
+  }
+  75% {
+    transform: scale(1.14) rotate(2deg);
+    filter: drop-shadow(0 0 22px rgba(249, 115, 22, 0.85)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.5));
+  }
+}
+
+.animate-flame {
+  animation: flameFlicker 1.6s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: bottom center;
+}
+
+/* Forcefield shield wave */
+@keyframes shieldPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(14, 165, 233, 0.8));
+  }
+}
+
+.animate-shield {
+  animation: shieldPulse 2.2s ease-in-out infinite;
+}
+
+/* Radar Ring Pulse for Active Flowchart Node */
+@keyframes radarWave {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar {
+  animation: radarWave 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.animate-radar-delayed {
+  animation: radarWave 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  animation-delay: 1s;
+}
+
+/* Energy pulse along SVG paths */
+@keyframes energyPulse {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-energy-line {
+  stroke-dasharray: 6 6;
+  animation: energyPulse 1.2s linear infinite;
+}
+
+/* Animated Flowing Light Dot along SVG Path */
+@keyframes moveAlongPath {
+  0% {
+    offset-distance: 0%;
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0.3;
+  }
+}
+
+/* Graph Bar Rising Animation */
+@keyframes barRise {
+  0% {
+    height: 0%;
+    opacity: 0.3;
+  }
+  60% {
+    height: var(--target-height);
+    opacity: 0.9;
+  }
+  80% {
+    height: calc(var(--target-height) * 0.96);
+  }
+  100% {
+    height: var(--target-height);
+    opacity: 1;
+  }
+}
+
+/* Animated Vertical Shimmer for Graph Bars */
+@keyframes barShimmer {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.bar-shimmer {
+  background-size: 100% 200%;
+  animation: barShimmer 2.5s ease-in-out infinite;
+}
+
+/* Bell Swing Animation on Hover */
+@keyframes bellSwingKey {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-12deg);
+  }
+  60% {
+    transform: rotate(8deg);
+  }
+  80% {
+    transform: rotate(-6deg);
+  }
+}
+
+.hover-bell-swing:hover {
+  animation: bellSwingKey 0.8s ease-in-out;
+  transform-origin: top center;
+}
+
+/* Icon Hover Elastic Bounce */
+.icon-bounce {
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.icon-bounce:hover {
+  transform: scale(1.22) rotate(6deg);
+}
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

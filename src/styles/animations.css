@@ -1,0 +1,512 @@
+/* =====================================================================
+   SKILLPRAX MASTER ANIMATION ENGINE & COGNITIVE TELEMETRY TOKENS
+   Zero Static UI Directive: Pro Max Physics & Dynamic States
+   ===================================================================== */
+
+/* --- 1. REALISTIC BURNING FLAME ANIMATION (STREAK METER) --- */
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.7)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.4));
+  }
+  25% {
+    transform: scale(1.08, 0.96) rotate(1.5deg);
+    filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.9)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.6));
+  }
+  50% {
+    transform: scale(0.96, 1.05) rotate(-2deg);
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.75)) drop-shadow(0 0 22px rgba(239, 68, 68, 0.5));
+  }
+  75% {
+    transform: scale(1.04, 1.02) rotate(1deg);
+    filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 32px rgba(239, 68, 68, 0.65));
+  }
+}
+
+@keyframes emberFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-16px) translateX(4px) scale(0.7);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-32px) translateX(-6px) scale(0.2);
+    opacity: 0;
+  }
+}
+
+.flame-active {
+  animation: flameFlicker 1.8s infinite ease-in-out;
+  transform-origin: center bottom;
+  display: inline-block;
+}
+
+.flame-ember-1 { animation: emberFloat 1.4s infinite linear; }
+.flame-ember-2 { animation: emberFloat 1.9s infinite linear 0.4s; }
+.flame-ember-3 { animation: emberFloat 1.6s infinite linear 0.8s; }
+
+/* --- 2. CRYSTALLINE SHIELD GLINT & FORCEFIELD DEFLECTION (PROTECTION METER) --- */
+@keyframes shieldGlint {
+  0% { transform: translateX(-100%) rotate(25deg); opacity: 0; }
+  30% { opacity: 0.6; }
+  60%, 100% { transform: translateX(200%) rotate(25deg); opacity: 0; }
+}
+
+@keyframes shieldDeflect {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.6)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.3));
+  }
+  20% {
+    transform: scale(1.1) rotate(2deg);
+    filter: drop-shadow(0 0 16px rgba(14, 165, 233, 0.95)) drop-shadow(0 0 26px rgba(56, 189, 248, 0.6));
+  }
+  45% {
+    transform: scale(0.95) rotate(-2deg);
+    filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.7));
+  }
+  65% {
+    transform: scale(1.14) rotate(1deg);
+    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 32px rgba(14, 165, 233, 0.7));
+  }
+  85% {
+    transform: scale(1.02) rotate(-1deg);
+    filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.8));
+  }
+}
+
+@keyframes shieldRippleRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  60% {
+    transform: scale(1.4);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.shield-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shield-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 60%
+  );
+  animation: shieldGlint 3.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.shield-barrier-active {
+  animation: shieldDeflect 2.2s infinite ease-in-out;
+  transform-origin: center center;
+  display: inline-block;
+}
+
+.shield-ripple-ring {
+  animation: shieldRippleRing 2.4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- 3. KINETIC VELOCITY & EKG HEART-RHYTHM (CADENCE METER) --- */
+@keyframes heartRhythm {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.5));
+  }
+  14% {
+    transform: scale(1.24);
+    filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.95)) drop-shadow(0 0 28px rgba(52, 211, 153, 0.65));
+  }
+  28% {
+    transform: scale(0.95);
+  }
+  42% {
+    transform: scale(1.16);
+    filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.85));
+  }
+  56% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.45));
+  }
+}
+
+@keyframes ecgSweepBar {
+  0% { transform: translateX(-120%); opacity: 0; }
+  30% { opacity: 0.9; }
+  70% { opacity: 0.9; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+.cadence-rhythm-active {
+  animation: heartRhythm 1.6s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center center;
+  display: inline-block;
+}
+
+.ecg-sweep-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.4) 50%,
+    transparent 100%
+  );
+  animation: ecgSweepBar 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* --- 4. COMPETENCY AWARD HALO & STAR GLEAM (ACU MASTERY METER) --- */
+@keyframes awardGleam {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)) drop-shadow(0 0 16px rgba(168, 85, 247, 0.35));
+  }
+  25% {
+    transform: scale(1.1) rotate(4deg);
+    filter: drop-shadow(0 0 18px rgba(99, 102, 241, 0.95)) drop-shadow(0 0 28px rgba(168, 85, 247, 0.65));
+  }
+  50% {
+    transform: scale(0.97) rotate(-3deg);
+    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.7));
+  }
+  75% {
+    transform: scale(1.14) rotate(2deg);
+    filter: drop-shadow(0 0 24px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 34px rgba(99, 102, 241, 0.75));
+  }
+}
+
+@keyframes starOrbit {
+  0% {
+    transform: rotate(0deg) translateX(15px) rotate(0deg) scale(0.6);
+    opacity: 0.3;
+  }
+  50% {
+    transform: rotate(180deg) translateX(15px) rotate(-180deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) translateX(15px) rotate(-360deg) scale(0.6);
+    opacity: 0.3;
+  }
+}
+
+.award-halo-active {
+  animation: awardGleam 2.4s infinite ease-in-out;
+  transform-origin: center center;
+  display: inline-block;
+}
+
+.award-star-1 {
+  animation: starOrbit 2.8s infinite linear;
+}
+
+.award-star-2 {
+  animation: starOrbit 2.8s infinite linear -1.4s;
+}
+
+/* --- 5. 7-DAY CADENCE GRAPH BARS (STAGGERED GROWTH) --- */
+@keyframes barGrowUp {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.graph-bar-animated {
+  transform-origin: bottom center;
+  animation: barGrowUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.graph-bar-animated:hover {
+  transform: scaleY(1.05) scaleX(1.08);
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.5));
+}
+
+/* --- 6. TELEMETRY NUMBER ROLL-UP / POP --- */
+@keyframes statPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+    filter: blur(4px);
+  }
+  70% {
+    transform: scale(1.06) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.stat-counter-pop {
+  animation: statPopIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- 7. EQUALIZER AUDIO-VISUAL & TROPHY BOUNCE --- */
+@keyframes eqBarPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.5));
+  }
+  30% {
+    transform: scale(1.12) rotate(-3deg);
+    filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.85));
+  }
+  70% {
+    transform: scale(0.96) rotate(3deg);
+    filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.65));
+  }
+}
+
+.barchart-equalizer-active {
+  animation: eqBarPulse 1.9s infinite ease-in-out;
+  transform-origin: center center;
+  display: inline-block;
+}
+
+@keyframes trophyBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.6));
+  }
+  50% {
+    transform: translateY(-3.5px) rotate(4deg) scale(1.12);
+    filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 24px rgba(234, 179, 8, 0.65));
+  }
+}
+
+.trophy-bounce-active {
+  animation: trophyBounce 2s infinite ease-in-out;
+  display: inline-block;
+}
+
+/* --- 8. WOBBLE-CLOUD CARD 3D HOVER --- */
+@keyframes cloudPulse {
+  0%, 100% { border-radius: 28px 24px 30px 26px; }
+  50% { border-radius: 24px 30px 26px 28px; }
+}
+
+.wobble-cloud-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: cloudPulse 6s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+.wobble-cloud-card:hover {
+  transform: translateY(-6px) rotate(-0.5deg) scale(1.02);
+  box-shadow: 0 16px 35px -8px rgba(16, 185, 129, 0.18), 0 0 25px rgba(99, 102, 241, 0.12);
+}
+
+/* --- 9. ROTATING BORDER BEAM --- */
+@keyframes borderBeamRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.border-beam-active {
+  background: linear-gradient(90deg, #10b981, #6366f1, #f59e0b, #10b981);
+  background-size: 300% 300%;
+  animation: borderBeamRotate 4s linear infinite;
+}
+
+/* --- 10. BUTTON PRO-MAX TACTILE MICRO-INTERACTIONS --- */
+.btn-pro-max {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn-pro-max:hover {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.35);
+}
+.btn-pro-max:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+}
+
+/* --- 11. UNIVERSAL PAGE ENTRANCE & STAGGER --- */
+@keyframes fadeInUpBlur {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.page-landing-enter {
+  animation: fadeInUpBlur 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 160ms; }
+.stagger-4 { animation-delay: 220ms; }
+.stagger-5 { animation-delay: 280ms; }
+.stagger-6 { animation-delay: 340ms; }
+
+/* --- 12. CONIC BORDER BEAMS --- */
+@keyframes conicSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.conic-beam {
+  position: relative;
+  overflow: hidden;
+}
+
+.conic-beam::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0 280deg, #10B981 320deg, #38BDF8 360deg);
+  animation: conicSpin 2.8s linear infinite;
+  z-index: 0;
+}
+
+.conic-beam-amber {
+  position: relative;
+  overflow: hidden;
+}
+
+.conic-beam-amber::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0 280deg, #F59E0B 320deg, #FBBF24 360deg);
+  animation: conicSpin 2.8s linear infinite;
+  z-index: 0;
+}
+
+/* --- 13. SHIMMER LASER SWEEP --- */
+@keyframes shimmerLaser {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  35%, 100% { transform: translateX(200%) skewX(-20deg); }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmerLaser 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* --- 14. BREATHING GLOW AURA --- */
+@keyframes activePulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.3), 0 4px 14px rgba(16, 185, 129, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.65), 0 6px 22px rgba(16, 185, 129, 0.35);
+  }
+}
+
+.animate-pulse-glow {
+  animation: activePulseGlow 2.2s ease-in-out infinite;
+}
+
+/* --- 15. RADAR RINGS & GAUGE SPIN --- */
+@keyframes radarRing {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.animate-radar-ring { animation: radarRing 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
+.animate-radar-ring-delayed { animation: radarRing 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 1s; }
+
+@keyframes gaugeSpinIn {
+  from {
+    stroke-dashoffset: 283;
+    transform: rotate(-90deg);
+  }
+}
+
+.animate-gauge-spin {
+  animation: gaugeSpinIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center;
+}
+
+/* --- 16. QUIZ OPTION TACTILE PRESS & GLOW --- */
+.quiz-option-card {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, border-color;
+  position: relative;
+}
+
+.quiz-option-card:hover {
+  transform: translateX(4px) translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.15);
+}
+
+.quiz-option-card:active {
+  transform: scale(0.985);
+}
+
+/* --- 17. CINEMATIC VIDEO BACKGROUND MIGRATION --- 
+ * All legacy SVG & CSS canvas background animations have been eliminated.
+ * Background is now rendered via the GPU-accelerated, zero-cut dual-buffer
+ * CinematicVideoBackground component (/src/components/CinematicVideoBackground.tsx).
+ */
+
+/* Respect user reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
